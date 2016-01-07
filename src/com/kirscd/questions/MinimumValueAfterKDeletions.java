@@ -1,15 +1,20 @@
 package com.kirscd.questions;
 
+/**
+ * Given an integer, return the minimum possible value after removing K digits.
+ * The smallest version of 246, removing 1 digit, is 24. The smallest version of 246712, 
+ * removing 2 digits is 2412. The only operation allowed is character deletion, not rotation or swaps etc.
+ */
 public class MinimumValueAfterKDeletions {
-	public static String value = "246";
+	public static String value = "232178";
 	
 	public static String solve(int toDelete) {
 		String mini = value;
-		for(int i = toDelete; i > 0; i++) {
+		for(int i = toDelete; i > 0; i--) {
 			int last = Integer.valueOf(String.valueOf(mini.charAt(0)));
 			int index = 0;
 			for(int j = 1; j < mini.length(); j++) {
-				if(mini.charAt(j) >= last) {
+				if(Integer.valueOf(String.valueOf(mini.charAt(j))) >= last) {
 					last = Integer.valueOf(String.valueOf(mini.charAt(j)));
 					index = j;
 					if(j == mini.length()-1) {
