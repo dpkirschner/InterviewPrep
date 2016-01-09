@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.dynamicProgramming;
 
 /**
  * Reorder the digits of a number, in order to get the next number

@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.google;
 
 import java.util.HashMap;
 import java.util.HashSet;

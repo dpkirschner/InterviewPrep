@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.dynamicProgramming;
 
 public class BinarySearchInRotatedArray {
 	public static int[] values = {4, 5, 1, 2, 3};

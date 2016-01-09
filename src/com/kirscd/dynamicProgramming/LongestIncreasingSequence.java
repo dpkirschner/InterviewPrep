@@ -1,6 +1,7 @@
-package com.kirscd.questions;
+package com.kirscd.dynamicProgramming;
 
 import com.kirscd.utilities.Utils;
+
 
 public class LongestIncreasingSequence {
 	public static int[] values;

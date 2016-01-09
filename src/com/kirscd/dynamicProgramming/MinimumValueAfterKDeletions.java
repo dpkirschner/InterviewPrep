@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.dynamicProgramming;
 
 /**
  * Given an integer, return the minimum possible value after removing K digits.

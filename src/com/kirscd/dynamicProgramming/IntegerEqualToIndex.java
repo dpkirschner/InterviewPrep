@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.dynamicProgramming;
 
 public class IntegerEqualToIndex {
 	public static int[] values = {-3, -1, 1, 3, 5};

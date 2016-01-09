@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.dynamicProgramming;
 
 public class AdjacentArray {
 	public static int[] values =  {4, 5, 6, 5, 6, 7, 8, 9, 10, 9};

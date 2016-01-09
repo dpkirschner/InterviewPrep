@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.dynamicProgramming;
 
 import com.kirscd.utilities.Utils;
 
@@ -70,9 +70,6 @@ public class StolenValues {
 	}
 	
 	public static void main(String args[]) {
-		//29 : 30 : -18 : 95 : 99
-		//5 : 95 : 85 : 92 : 99 
-		//53 : 40 : 87 : 45 : 49 :
 		values = Utils.buildIntArray(5, -100, 100);
 		
 		Utils.printIntArray(values);

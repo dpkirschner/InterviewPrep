@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.dynamicProgramming;
 
 /**
  * A board has n*m cells, and there is a gift with some value (value is greater than 0) in every cell.

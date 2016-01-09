@@ -1,4 +1,4 @@
-package com.kirscd.questions;
+package com.kirscd.google;
 
 /**
  * Given a sorted array of length N, find the number which occurs more than N/4 times.
