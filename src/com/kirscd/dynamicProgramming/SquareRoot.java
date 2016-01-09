@@ -1,4 +1,4 @@
-package com.kirscd.algorithms;
+package com.kirscd.dynamicProgramming;
 
 public class SquareRoot {
 	public static int solve(int root) {

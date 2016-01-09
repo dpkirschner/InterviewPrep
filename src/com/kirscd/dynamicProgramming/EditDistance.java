@@ -1,4 +1,4 @@
-package com.kirscd.algorithms;
+package com.kirscd.dynamicProgramming;
 
 public class EditDistance {
 	public static int MED(String a, String b) {

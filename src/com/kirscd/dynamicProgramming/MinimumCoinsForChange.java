@@ -1,4 +1,4 @@
-package com.kirscd.algorithms;
+package com.kirscd.dynamicProgramming;
 
 public class MinimumCoinsForChange {
 	public static int[] coinValues = {1, 6, 10};

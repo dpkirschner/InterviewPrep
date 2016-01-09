@@ -1,4 +1,4 @@
-package com.kirscd.algorithms;
+package com.kirscd.dynamicProgramming;
 
 public class LongestCommonSubString {
 	public static String solve(String a, String b) {

@@ -1,4 +1,4 @@
-package com.kirscd.algorithms;
+package com.kirscd.dynamicProgramming;
 
 import java.util.HashMap;
 
