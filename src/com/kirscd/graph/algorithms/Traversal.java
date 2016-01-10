@@ -2,19 +2,19 @@ package com.kirscd.graph.algorithms;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import com.kirscd.graph.Edge;
+import com.kirscd.graph.GraphUtils;
 import com.kirscd.graph.Node;
 
 public class Traversal {
 	/**
-	 * This is a destructive BFS. It marks the nodes during traversal and as such will
-	 * need the graph to be cleaned (by setting each nodes state to undiscovered)
-	 * between each run
+	 * Standard breadth first search traversal. This will clean the nodes
+	 * before and after the traversal to ensure we don't carry over any node
+	 * state from previous/future runs
 	 * @param graph
 	 */
 	public static void breadthFirstSearch(ArrayList<Node> graph) {
@@ -22,6 +22,8 @@ public class Traversal {
 		if(graph.size() == 0) {
 			return;
 		}
+		
+		GraphUtils.cleanGraph(graph);
 
 		Queue<Node> queue = new LinkedList<Node>();
 		for(Node node : graph) {
@@ -54,12 +56,13 @@ public class Traversal {
 		}
 
 		System.out.println();
+		GraphUtils.cleanGraph(graph);
 	}
 	
 	/**
-	 * This is a destructive DFS. It marks the nodes during traversal and as such will
-	 * need the graph to be cleaned (by setting each nodes state to undiscovered)
-	 * between each run
+	 * Standard depth first search iterative traversal. This will clean the nodes
+	 * before and after the traversal to ensure we don't carry over any node
+	 * state from previous/future runs
 	 * @param graph
 	 */
 	public static void depthFirstSearchIterative(ArrayList<Node> graph) {
@@ -67,6 +70,8 @@ public class Traversal {
 		if(graph.size() == 0) {
 			return;
 		}
+		
+		GraphUtils.cleanGraph(graph);
 
 		Deque<Node> stack = new ArrayDeque<Node>();
 		for(Node node : graph) {
@@ -95,16 +100,12 @@ public class Traversal {
 				//finished with this node
 				node.state = Node.State.COMPLETE;
 			}
-			System.out.println();
 		}
-		
+		System.out.println();
+		GraphUtils.cleanGraph(graph);
 	}
 	
 	/**
-	 * This is a destructive DFS. It marks the nodes during traversal and as such will
-	 * need the graph to be cleaned (by setting each nodes state to undiscovered)
-	 * between each run.
-	 * 
 	 * NOTE: The two implementations of DFS will show different results because of the 
 	 * sequence of stack accesses. Recursive DFS always takes the first child to work with.
 	 * Iterative DFS will always put all of the children on the stack first, then pop off the
@@ -118,11 +119,19 @@ public class Traversal {
 			return;
 		}
 		
-		dfsRecursive(graph.get(0));
+		GraphUtils.cleanGraph(graph);
+		
+		for(Node node : graph) {
+			dfsRecursive(node);
+		}
+		
 		System.out.println();
+		
+		GraphUtils.cleanGraph(graph);
 	}
 
 	/**
+	 * Recursive helper for DFS algorithm
 	 * @param graph
 	 */
 	private static void dfsRecursive(Node node) {
@@ -136,11 +145,7 @@ public class Traversal {
 		System.out.print(node.name + " -> ");
 		
 		for(Edge e : node.edges) {
-			//process edge
-			Node neighbor = e.getNeighbor(node);
-			
-			//first time we see this node it gets added to the stack for later processing
-			dfsRecursive(neighbor);
+			dfsRecursive(e.getNeighbor(node));
 		}
 			
 		//finished with this node
@@ -148,46 +153,9 @@ public class Traversal {
 	}
 	
 	public static void main(String args[]) {
-		Traversal.breadthFirstSearch(buildGraph());
-		Traversal.depthFirstSearchIterative(buildGraph());
-		Traversal.depthFirstSearchRecursive(buildGraph());
-	}
-
-	/**
-	 * Returns a set of Nodes which have different relationships
-	 */
-	private static ArrayList<Node> buildGraph() {
-		Node one = new Node("one");
-		Node two = new Node("two");
-		Node three = new Node ("three");
-		Node four = new Node("four");
-		Node five = new Node("five");
-		Node six = new Node("six");
-		
-		Edge oneTwo = new Edge(one, two);
-		Edge oneFive = new Edge(one, five);
-		Edge oneSix = new Edge(one, six);
-		
-		Edge twoThree = new Edge(two, three);
-		Edge twoFive = new Edge(two, five);
-		
-		Edge threeFour = new Edge(three, four);
-		
-		Edge fourFive = new Edge(four, five);
-		
-		ArrayList<Edge> oneEdges = new ArrayList<Edge>(Arrays.asList(oneTwo, oneFive, oneSix));
-		one.edges = oneEdges;
-		ArrayList<Edge> twoEdges = new ArrayList<Edge>(Arrays.asList(oneTwo, twoThree, twoFive));
-		two.edges = twoEdges;
-		ArrayList<Edge> threeEdges = new ArrayList<Edge>(Arrays.asList(twoThree, threeFour));
-		three.edges = threeEdges;
-		ArrayList<Edge> fourEdges = new ArrayList<Edge>(Arrays.asList(threeFour, fourFive));
-		four.edges = fourEdges;
-		ArrayList<Edge> fiveEdges = new ArrayList<Edge>(Arrays.asList(oneFive, twoFive, fourFive));
-		five.edges = fiveEdges;
-		ArrayList<Edge> sixEdges = new ArrayList<Edge>(Arrays.asList(oneSix));
-		six.edges = sixEdges;
-		
-		return new ArrayList<Node>(Arrays.asList(one, two, three, four, five, six));
+		ArrayList<Node> graph = GraphUtils.buildGraphWithCycle();
+		Traversal.breadthFirstSearch(graph);
+		Traversal.depthFirstSearchIterative(graph);
+		Traversal.depthFirstSearchRecursive(graph);
 	}
 }
