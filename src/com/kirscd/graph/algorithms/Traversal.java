@@ -22,32 +22,37 @@ public class Traversal {
 		if(graph.size() == 0) {
 			return;
 		}
-		
-		Node current = graph.get(0);
-		current.state = Node.State.DISCOVERED;
+
 		Queue<Node> queue = new LinkedList<Node>();
-		queue.add(current);
-		
-		while(!queue.isEmpty()) {
-			current = queue.remove();
-			
-			//process node
-			System.out.print(current.name + " -> ");
-			
-			for(Edge e : current.edges) {
-				//process edge
-				Node neighbor = e.getNeighbor(current);
-				
-				//first time we see this node it gets added to the queue for later processing
-				if(neighbor.state == Node.State.UNDISCOVERED) {
-					neighbor.state = Node.State.DISCOVERED;
-					queue.add(neighbor);
-				}
+		for(Node node : graph) {
+			if(node.state != Node.State.UNDISCOVERED) {
+				continue;
 			}
+			node.state = Node.State.DISCOVERED;
+			queue.add(node);
 			
-			//finished with this node
-			current.state = Node.State.COMPLETE;
+			while(!queue.isEmpty()) {
+				node = queue.remove();
+				
+				//process node
+				System.out.print(node.name + " -> ");
+				
+				for(Edge e : node.edges) {
+					//process edge
+					Node neighbor = e.getNeighbor(node);
+					
+					//first time we see this node it gets added to the queue for later processing
+					if(neighbor.state == Node.State.UNDISCOVERED) {
+						neighbor.state = Node.State.DISCOVERED;
+						queue.add(neighbor);
+					}
+				}
+				
+				//finished with this node
+				node.state = Node.State.COMPLETE;
+			}
 		}
+
 		System.out.println();
 	}
 	
@@ -62,33 +67,37 @@ public class Traversal {
 		if(graph.size() == 0) {
 			return;
 		}
-		
-		Node current = graph.get(0);
-		current.state = Node.State.DISCOVERED;
+
 		Deque<Node> stack = new ArrayDeque<Node>();
-		stack.push(current);
-		
-		while(!stack.isEmpty()) {
-			current = stack.pop();
-			
-			//process node
-			System.out.print(current.name + " -> ");
-			
-			for(Edge e : current.edges) {
-				//process edge
-				Node neighbor = e.getNeighbor(current);
-				
-				//first time we see this node it gets added to the stack for later processing
-				if(neighbor.state == Node.State.UNDISCOVERED) {
-					neighbor.state = Node.State.DISCOVERED;
-					stack.push(neighbor);
-				}
+		for(Node node : graph) {
+			if(node.state != Node.State.UNDISCOVERED) {
+				continue;
 			}
-			
-			//finished with this node
-			current.state = Node.State.COMPLETE;
+			node.state = Node.State.DISCOVERED;
+			stack.push(node);
+			while(!stack.isEmpty()) {
+				node = stack.pop();
+				
+				//process node
+				System.out.print(node.name + " -> ");
+				
+				for(Edge e : node.edges) {
+					//process edge
+					Node neighbor = e.getNeighbor(node);
+					
+					//first time we see this node it gets added to the stack for later processing
+					if(neighbor.state == Node.State.UNDISCOVERED) {
+						neighbor.state = Node.State.DISCOVERED;
+						stack.push(neighbor);
+					}
+				}
+				
+				//finished with this node
+				node.state = Node.State.COMPLETE;
+			}
+			System.out.println();
 		}
-		System.out.println();
+		
 	}
 	
 	/**
