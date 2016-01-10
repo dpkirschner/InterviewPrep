@@ -77,6 +77,38 @@ public class GraphUtils {
 		return new ArrayList<Node>(Arrays.asList(one, two, three, four, five, six));
 	}
 	
+	/**
+	 * Returns a set of Nodes which have different relationships
+	 */
+	public static ArrayList<Node> buildUnconnectedGraph() {
+		Node one = new Node("one");
+		Node two = new Node("two");
+		Node three = new Node ("three");
+		Node four = new Node("four");
+		Node five = new Node("five");
+		Node six = new Node("six");
+		
+		Edge oneTwo = new Edge(one, two);
+		Edge oneFive = new Edge(one, five);
+		
+		Edge twoThree = new Edge(two, three);
+		
+		Edge fourFive = new Edge(four, five);
+		
+		ArrayList<Edge> oneEdges = new ArrayList<Edge>(Arrays.asList(oneTwo, oneFive));
+		one.edges = oneEdges;
+		ArrayList<Edge> twoEdges = new ArrayList<Edge>(Arrays.asList(oneTwo, twoThree));
+		two.edges = twoEdges;
+		ArrayList<Edge> threeEdges = new ArrayList<Edge>(Arrays.asList(twoThree));
+		three.edges = threeEdges;
+		ArrayList<Edge> fourEdges = new ArrayList<Edge>(Arrays.asList(fourFive));
+		four.edges = fourEdges;
+		ArrayList<Edge> fiveEdges = new ArrayList<Edge>(Arrays.asList(oneFive, fourFive));
+		five.edges = fiveEdges;
+		
+		return new ArrayList<Node>(Arrays.asList(one, two, three, four, five, six));
+	}
+	
 
 	/**
 	 * This will clean the nodes to ensure we don't carry over any node

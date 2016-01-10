@@ -13,12 +13,14 @@ public class Node {
 		this.edges = edges;
 		this.state = State.UNDISCOVERED;
 		this.toString = "node:" + this.name;
+		this.edges = new ArrayList<Edge>();
 	}
 	
 	public Node(String name) {
 		this.name = name;
 		this.state = State.UNDISCOVERED;
 		this.toString = "node:" + this.name;
+		this.edges = new ArrayList<Edge>();
 	}
 	
 	public String toString() {

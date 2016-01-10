@@ -64,5 +64,6 @@ public class ContainsCycle {
 	public static void main(String args[]) {
 		System.out.println(ContainsCycle.containsCycle(GraphUtils.buildGraphWithCycle()));
 		System.out.println(ContainsCycle.containsCycle(GraphUtils.buildGraphTree()));
+		System.out.println(ContainsCycle.containsCycle(GraphUtils.buildUnconnectedGraph()));
 	}
 }
