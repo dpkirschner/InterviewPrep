@@ -9,11 +9,7 @@ import com.kirscd.graph.Node;
 public class ContainsCycle {
 	
 	/**
-	 * NOTE: The two implementations of DFS will show different results because of the 
-	 * sequence of stack accesses. Recursive DFS always takes the first child to work with.
-	 * Iterative DFS will always put all of the children on the stack first, then pop off the
-	 * most recent one to work with. Same algorithm, just different sequence. Editing the Iterative
-	 * DFS to put the children on the stack backwards will result in them having the same result.
+	 * returns true if the given graph contains a cycle
 	 * @param graph
 	 */
 	public static boolean containsCycle(ArrayList<Node> graph) {
