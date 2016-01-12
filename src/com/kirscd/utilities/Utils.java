@@ -51,6 +51,32 @@ public class Utils {
 		System.out.println();
 	}
 	
+
+	/**
+	 * @param one
+	 * @param two
+	 * @param values
+	 */
+	public static void print2DArray(String one, String two, int[][] values) {
+		System.out.print("?:?:");
+		for(int i = 0; i < two.length(); i++) {
+			System.out.print(two.charAt(i)+":");
+		}
+		System.out.println();
+		for(int i = 0; i < values.length; i++) {
+			if(i < 1) {
+				System.out.print("?:");
+			} else {
+				System.out.print(one.charAt(i-1) + ":");
+			}
+			
+			for(int j = 0; j < values[0].length; j++) {
+				System.out.print(values[i][j] + ":");
+			}
+			System.out.println();
+		}
+	}
+	
 	public static Integer[] deepCopy(Integer[] values) {
 		Integer[] copy = new Integer[values.length];
 		for(int i = 0; i < values.length; i++) {
