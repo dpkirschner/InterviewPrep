@@ -41,7 +41,7 @@ public class MergingRanges {
 		System.out.println();
 	}
 	
-	public static class Meeting implements Comparable {
+	public static class Meeting implements Comparable<Meeting> {
 
 	    int startTime;
 	    int endTime;
@@ -62,19 +62,15 @@ public class MergingRanges {
 	    	return this;
 	    }
 
-    	@Override
-    	public int compareTo(Object o) {
-    		if(!(o instanceof Meeting)) {
-    			throw new RuntimeException("Can't be compared.");
-    		}
-    		Meeting other = (Meeting) o;
-    		if(this.endTime < other.startTime) {
+		@Override
+		public int compareTo(Meeting o) {
+			if(this.endTime < o.startTime) {
     			return -1;
-    		} else if(this.startTime > other.endTime) {
+    		} else if(this.startTime > o.endTime) {
     			return 1;
     		} 
     		
     		return 0;
-    	}
+		}
 	}
 }

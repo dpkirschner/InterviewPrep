@@ -37,15 +37,24 @@ public class RangeStorageMap {
     }
     
     public static void main(String args[]) {
+    	Range[] ranges = {
+    			new Range(0, 1)
+    			, new Range(9, 10)
+    			, new Range(4, 8)
+    			, new Range(3, 5)
+    			, new Range(10, 12)};
     	RangeStorageMap ranger = new RangeStorageMap();
+    	for(Range range : ranges) {
+    		ranger.add(range);
+    	}
+    	
     	System.out.println("Ranger contains 1: " + ranger.contains(1));
-    	ranger.add(new Range(0, 10));
-    	System.out.println("Ranger contains 1: " + ranger.contains(1));
-    	System.out.println("Ranger contains -1: " + ranger.contains(-1));
-    	System.out.println("Ranger contains 10: " + ranger.contains(10));
+    	System.out.println("Ranger contains 2: " + ranger.contains(2));
+    	System.out.println("Ranger contains 8: " + ranger.contains(8));
+    	System.out.println("Ranger contains 9: " + ranger.contains(9));
     	System.out.println("Ranger contains 11: " + ranger.contains(11));
-    	ranger.add(new Range(9, 45));
-    	System.out.println("Ranger contains 11: " + ranger.contains(11));
+    	System.out.println("Ranger contains 13: " + ranger.contains(13));
+    	System.out.println("fin");
     }
     
     public static class Range implements Comparable<Range> {
